@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
+
+  
+        <CustomAction
+            ScriptSrc="JQuery/jquery-1.7.1.min.js"
+            Location="ScriptLink"
+            Sequence="100">
+        </CustomAction>
+
+        <CustomAction
+           ScriptSrc="JQuery/jquery-ui-1.8.18.custom.min.js"
+           Location="ScriptLink"
+           Sequence="101">
+        </CustomAction>
+
+ 
+<CustomAction
+Location="ScriptLink"
+ScriptBlock="
+     
+            function loadUIElements(){
+                      if (window.location.href.indexOf('AssetPortalBrowser.aspx') > 0) return; 
+                      var head = document.getElementsByTagName('head')[0]; 
+                      var cssNode = document.createElement('link');
+                      cssNode.type = 'text/css';
+                      cssNode.rel = 'stylesheet';
+                      cssNode.href = '_layouts/jquery/jquery-ui-1.8.18.custom.css';
+                      cssNode.media = 'screen';
+                      head.appendChild(cssNode);
+            }
+            
+
+            _spBodyOnLoadFunctionNames.push('loadUIElements()');
+" Sequence="101">
+    </CustomAction>
+    
+    
+    
+    
+    
+   
+    <Module Name="ContentCopier" List="113" Url="_catalogs/wp">
+    <File Path="ContentCopier\ContentCopier.webpart" Url="ContentCopier.webpart" Type="GhostableInLibrary" >
+      <Property Name="Group" Value="Custom" />
+    </File>
+  </Module>
+</Elements>

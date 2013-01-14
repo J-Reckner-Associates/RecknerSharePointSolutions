@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D55BE9BD-A6A0-4D2D-9244-ADE882C0E798}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RecknerSharePointSolutions</RootNamespace>
+    <AssemblyName>RecknerSharePointSolutions</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SandboxedSolution>False</SandboxedSolution>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csla, Version=3.8.4.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>I:\hayri\ProductionDlls\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Publishing, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\ISAPI\Microsoft.SharePoint.Publishing.dll</HintPath>
+    </Reference>
+    <Reference Include="Production.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b54e68ceca346961, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>I:\hayri\ProductionDlls\Production.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="Production.Dal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8deb91772b7fe83c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>I:\hayri\ProductionDlls\Production.Dal.dll</HintPath>
+    </Reference>
+    <Reference Include="Production.DalADO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d21a9f725ecd5567, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>I:\hayri\ProductionDlls\Production.DalADO.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="Microsoft.SharePoint.Security" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActiveDirectoryManagement.cs" />
+    <Compile Include="AssignContactsToProposal\AssignContactsToProposal.cs" />
+    <Compile Include="AssignContactsToProposal\AssignContactsToProposalUserControl.ascx.cs">
+      <DependentUpon>AssignContactsToProposalUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssignContactsToProposal\AssignContactsToProposalUserControl.ascx.designer.cs">
+      <DependentUpon>AssignContactsToProposalUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BlueBerryJobsByClient1\BlueBerryJobsByClient1.cs" />
+    <Compile Include="BlueBerryJobsByClient1\BlueBerryJobsByClient1UserControl.ascx.cs">
+      <DependentUpon>BlueBerryJobsByClient1UserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlueBerryJobsByClient1\BlueBerryJobsByClient1UserControl.ascx.designer.cs">
+      <DependentUpon>BlueBerryJobsByClient1UserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Blueberry_Contacts_Event_Receiver\Blueberry_Contacts_Event_Receiver.cs" />
+    <Compile Include="Blueberry_Proposals_List_Event_Receiver\Blueberry_Proposals_List_Event_Receiver.cs" />
+    <Compile Include="ClientContacts\ClientContacts.cs" />
+    <Compile Include="ClientContacts\ClientContactsUserControl.ascx.cs">
+      <DependentUpon>ClientContactsUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientContacts\ClientContactsUserControl.ascx.designer.cs">
+      <DependentUpon>ClientContactsUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContentCopier\ContentCopier.cs" />
+    <Compile Include="ContentCopier\ContentCopierUserControl.ascx.cs">
+      <DependentUpon>ContentCopierUserControl.ascx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentCopier\ContentCopierUserControl.ascx.designer.cs">
+      <DependentUpon>ContentCopierUserControl.ascx.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="HelloWorld\HelloWorld.cs" />
+    <Compile Include="HelloWorld\HelloWorldUserControl.ascx.cs">
+      <DependentUpon>HelloWorldUserControl.ascx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelloWorld\HelloWorldUserControl.ascx.designer.cs">
+      <DependentUpon>HelloWorldUserControl.ascx.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ListOfSiteTemplates\ListOfSiteTemplates.cs" />
+    <Compile Include="ListOfSiteTemplates\ListOfSiteTemplatesUserControl.ascx.cs">
+      <DependentUpon>ListOfSiteTemplatesUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListOfSiteTemplates\ListOfSiteTemplatesUserControl.ascx.designer.cs">
+      <DependentUpon>ListOfSiteTemplatesUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProposalContact.cs" />
+    <Compile Include="NewClientForm\NewClientForm.cs" />
+    <Compile Include="NewClientForm\NewClientFormUserControl.ascx.cs">
+      <DependentUpon>NewClientFormUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewClientForm\NewClientFormUserControl.ascx.designer.cs">
+      <DependentUpon>NewClientFormUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proposal2Job\Proposal2Job.cs" />
+    <Compile Include="Proposal2Job\Proposal2JobUserControl.ascx.cs">
+      <DependentUpon>Proposal2JobUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Proposal2Job\Proposal2JobUserControl.ascx.designer.cs">
+      <DependentUpon>Proposal2JobUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProposalContacts\ProposalContacts.cs" />
+    <Compile Include="ProposalContacts\ProposalContactsUserControl.ascx.cs">
+      <DependentUpon>ProposalContactsUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProposalContacts\ProposalContactsUserControl.ascx.designer.cs">
+      <DependentUpon>ProposalContactsUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchClient\SearchClient.cs" />
+    <Compile Include="SearchClient\SearchClientUserControl.ascx.cs">
+      <DependentUpon>SearchClientUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchClient\SearchClientUserControl.ascx.designer.cs">
+      <DependentUpon>SearchClientUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AssignContactsToProposal\AssignContactsToProposal.webpart" />
+    <None Include="AssignContactsToProposal\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{eb22831d-f0c0-4953-a850-e3c848c0b6ba}</SharePointProjectItemId>
+    </None>
+    <None Include="BlueBerryJobsByClient1\BlueBerryJobsByClient1.webpart" />
+    <None Include="BlueBerryJobsByClient1\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7c540847-2af2-46a1-a925-01db2e03bd1b}</SharePointProjectItemId>
+    </None>
+    <None Include="Blueberry_Contacts_Event_Receiver\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7cceb6a6-5a89-453d-ad5f-eea033a5ec74}</SharePointProjectItemId>
+    </None>
+    <None Include="Blueberry_Proposals_List_Event_Receiver\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d1214142-e641-4b5e-8db3-b9ee63dea1b8}</SharePointProjectItemId>
+    </None>
+    <None Include="ClientContacts\ClientContacts.webpart" />
+    <None Include="ClientContacts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2904f3cc-7478-492d-b685-e763507e0b5d}</SharePointProjectItemId>
+    </None>
+    <None Include="ContentCopier\ContentCopier.webpart" />
+    <None Include="ContentCopier\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{59f116a6-cdc1-44a4-96ad-96232e6cd5e3}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{86c742ac-1bcd-4527-9e9d-96930716a37b}</FeatureId>
+    </None>
+    <None Include="Features\Feature2\Feature2.feature">
+      <FeatureId>{841c2c65-6c2e-48f4-8478-516dbf3e9589}</FeatureId>
+    </None>
+    <None Include="HelloWorld\HelloWorld.webpart" />
+    <None Include="HelloWorld\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6315d6d4-b8ce-4659-bae9-f6afbf54eb7f}</SharePointProjectItemId>
+    </None>
+    <None Include="key.snk" />
+    <None Include="ListOfSiteTemplates\ListOfSiteTemplates.webpart" />
+    <None Include="ListOfSiteTemplates\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b3865686-4289-46bd-b9a1-c0551eb79451}</SharePointProjectItemId>
+    </None>
+    <None Include="NewClientForm\NewClientForm.webpart" />
+    <None Include="NewClientForm\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6e1bc67f-955a-47af-9b49-5cf7ae3d3a78}</SharePointProjectItemId>
+    </None>
+    <None Include="Package\Package.package">
+      <PackageId>{2514f229-f75f-420e-a5f5-1fb122307eec}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="Proposal2Job\Proposal2Job.webpart" />
+    <None Include="Proposal2Job\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8f12d504-c411-44a3-8c2e-aae4cbb2e75b}</SharePointProjectItemId>
+    </None>
+    <None Include="ProposalContacts\ProposalContacts.webpart" />
+    <None Include="ProposalContacts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b1b7954e-e594-4adf-8950-25a1c7ec5519}</SharePointProjectItemId>
+    </None>
+    <None Include="SearchClient\SearchClient.webpart" />
+    <None Include="SearchClient\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2bb6f88e-d5fe-46bf-90cc-ac5f4d51c2ed}</SharePointProjectItemId>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="AssignContactsToProposal\AssignContactsToProposalUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="AssignContactsToProposal\Elements.xml" />
+    <Content Include="BlueBerryJobsByClient1\BlueBerryJobsByClient1UserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="BlueBerryJobsByClient1\Elements.xml" />
+    <Content Include="Blueberry_Contacts_Event_Receiver\Elements.xml" />
+    <Content Include="Blueberry_Proposals_List_Event_Receiver\Elements.xml" />
+    <Content Include="ClientContacts\ClientContactsUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="ClientContacts\Elements.xml" />
+    <Content Include="ContentCopier\ContentCopierUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentCopier\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
+    <Content Include="Features\Feature2\Feature2.Template.xml">
+      <DependentUpon>Feature2.feature</DependentUpon>
+    </Content>
+    <Content Include="HelloWorld\Elements.xml" />
+    <Content Include="HelloWorld\HelloWorldUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ListOfSiteTemplates\Elements.xml" />
+    <Content Include="ListOfSiteTemplates\ListOfSiteTemplatesUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="NewClientForm\Elements.xml" />
+    <Content Include="NewClientForm\NewClientFormUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Proposal2Job\Elements.xml" />
+    <Content Include="Proposal2Job\Proposal2JobUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="ProposalContacts\Elements.xml" />
+    <Content Include="ProposalContacts\ProposalContactsUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="SearchClient\Elements.xml" />
+    <Content Include="SearchClient\SearchClientUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
+</Project>

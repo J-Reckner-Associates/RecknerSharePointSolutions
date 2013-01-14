@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Receivers ListUrl="Lists/ClientContacts">
+
+  <Receiver>
+<Name>Blueberry_Contacts_Event_ReceiverItemAdded</Name>
+<Type>ItemAdded</Type>
+<Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
+<Class>RecknerSharePointSolutions.Blueberry_Contacts_Event_Receiver.Blueberry_Contacts_Event_Receiver</Class>
+<SequenceNumber>1000</SequenceNumber>
+<Synchronization>Synchronous</Synchronization>
+</Receiver>
+</Receivers>
+</Elements>

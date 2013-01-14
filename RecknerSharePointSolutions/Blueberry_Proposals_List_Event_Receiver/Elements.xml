@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Receivers ListUrl="Lists/Proposals">
+      <Receiver>
+        <Name>Blueberry_Proposals_List_Event_ReceiverItemAdding</Name>
+        <Type>ItemAdding</Type>
+        <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
+        <Class>RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver.Blueberry_Proposals_List_Event_Receiver</Class>
+        <SequenceNumber>10000</SequenceNumber>
+        <Synchronization>Synchronous</Synchronization>
+      </Receiver>
+      <Receiver>
+        <Name>Blueberry_Proposals_List_Event_ReceiverItemUpdating</Name>
+        <Type>ItemUpdating</Type>
+        <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
+        <Class>RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver.Blueberry_Proposals_List_Event_Receiver</Class>
+        <SequenceNumber>10000</SequenceNumber>
+      </Receiver>
+      <Receiver>
+        <Name>Blueberry_Proposals_List_Event_ReceiverItemDeleting</Name>
+        <Type>ItemDeleting</Type>
+        <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
+        <Class>RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver.Blueberry_Proposals_List_Event_Receiver</Class>
+        <SequenceNumber>10000</SequenceNumber>
+      </Receiver>
+
+  <Receiver>
+<Name>Blueberry_Proposals_List_Event_ReceiverItemAdded</Name>
+<Type>ItemAdded</Type>
+<Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
+<Class>RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver.Blueberry_Proposals_List_Event_Receiver</Class>
+<SequenceNumber>1000</SequenceNumber>
+      <Synchronization>Synchronous</Synchronization>
+</Receiver>
+<Receiver>
+<Name>Blueberry_Proposals_List_Event_ReceiverItemDeleted</Name>
+<Type>ItemDeleted</Type>
+<Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
+<Class>RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver.Blueberry_Proposals_List_Event_Receiver</Class>
+<SequenceNumber>1000</SequenceNumber>
+</Receiver>
+<Receiver>
+<Name>Blueberry_Proposals_List_Event_ReceiverItemUpdated</Name>
+<Type>ItemUpdated</Type>
+<Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
+<Class>RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver.Blueberry_Proposals_List_Event_Receiver</Class>
+<SequenceNumber>1000</SequenceNumber>
+</Receiver>
+</Receivers>
+</Elements>

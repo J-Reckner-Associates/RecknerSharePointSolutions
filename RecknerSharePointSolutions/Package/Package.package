@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="2514f229-f75f-420e-a5f5-1fb122307eec" solutionId="2514f229-f75f-420e-a5f5-1fb122307eec" resetWebServer="true" name="RecknerSharePointSolutions" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <customAssembly location="Csla.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="ProductionDlls\Csla.dll">
+      <safeControls>
+        <safeControl namespaceName="Csla" typeName="*" isSafeAgainstScript="false" />
+      </safeControls>
+    </customAssembly>
+    <customAssembly location="Production.Business.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="ProductionDlls\Production.Business.dll">
+      <safeControls>
+        <safeControl namespaceName="Production" typeName="*" isSafeAgainstScript="false" />
+      </safeControls>
+    </customAssembly>
+    <customAssembly location="Production.DalADO.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="ProductionDlls\Production.DalADO.dll">
+      <safeControls>
+        <safeControl namespaceName="Production" typeName="*" isSafeAgainstScript="false" />
+      </safeControls>
+    </customAssembly>
+    <customAssembly location="Production.Dal.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="ProductionDlls\Production.Dal.dll">
+      <safeControls>
+        <safeControl namespaceName="Production" typeName="*" isSafeAgainstScript="false" />
+      </safeControls>
+    </customAssembly>
+  </assemblies>
+  <features>
+    <featureReference itemId="86c742ac-1bcd-4527-9e9d-96930716a37b" />
+    <featureReference itemId="841c2c65-6c2e-48f4-8478-516dbf3e9589" />
+  </features>
+</package>
