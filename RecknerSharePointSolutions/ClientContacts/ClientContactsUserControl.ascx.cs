@@ -31,6 +31,9 @@ namespace RecknerSharePointSolutions.ClientContacts
 
                         ClientID = currentWeb.Properties["ClientID"].ToString();
 
+                        HyperLink1.NavigateUrl = blueberryWeb.Url + "/lists/ClientContacts/newform.aspx?ClientID=" + ClientID;
+                        HyperLink2.NavigateUrl = blueberryWeb.Url + "/lists/ClientContacts/AllItems.aspx";
+
                     }
 
                 

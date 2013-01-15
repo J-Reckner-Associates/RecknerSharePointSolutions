@@ -6,6 +6,11 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ClientContactsUserControl.ascx.cs" Inherits="RecknerSharePointSolutions.ClientContacts.ClientContactsUserControl" %>
+<p style="float: right">
+    <asp:HyperLink ID="HyperLink2" runat="server">[Manage Contacts]</asp:HyperLink>
+&nbsp;<asp:HyperLink ID="HyperLink1" runat="server">[Add a New Contact]</asp:HyperLink>
+    <br />
+</p>
 <asp:GridView ID="GridView1" runat="server" CellPadding="4" DataKeyNames="Id" 
     EnableModelValidation="True" ForeColor="#333333" 
     AutoGenerateColumns="False" 

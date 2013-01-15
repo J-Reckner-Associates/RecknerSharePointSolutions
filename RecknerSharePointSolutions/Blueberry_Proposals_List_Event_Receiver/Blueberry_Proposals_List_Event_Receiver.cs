@@ -20,9 +20,7 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
         HttpContext ctx = null;
         string ClientID = "";
         string ClientName = "";
-        string TemplateName = "ENTERWIKI#0";
- 
-    
+        string TemplateName = "{FB4BEE50-1A67-41C4-8468-58BA91588F1D}#ProposalTemplate_V2";  // "ENTERWIKI#0";
    
         public Blueberry_Proposals_List_Event_Receiver() : base()
         {
@@ -80,19 +78,19 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
 
 
                    SPWeb newProposalWeb = clientWeb.Webs.Add(ProposalID, ProposalName, ProposalName, 1033, wt, false, false);
-
-                   newProposalWeb.Properties.Add("ClientID", ClientID);
-                   newProposalWeb.Properties.Add("ClientName", ClientName);
-                   newProposalWeb.Properties.Add("ProposalID", ProposalID);
-                   newProposalWeb.Properties.Update();
-
+                   
+          
                    newProposalWeb.Navigation.UseShared = true;
-
+                   newProposalWeb.Properties.Update();
+                   
                    //Updates default page.
-                   SPFile f = newProposalWeb.GetFile("pages/Default.aspx");
+                   SPFile f = newProposalWeb.GetFile("Pages/Home.aspx");
 
                    newProposalWeb.Update();
                    PublishingWeb w = PublishingWeb.GetPublishingWeb(newProposalWeb);
+                //   w.Web.Properties.Add("ClientID", ClientID);
+                  // w.Web.Properties.Add("ClientName", ClientName);
+                 //  w.Web.Properties.Add("ProposalID", ProposalID);
                    w.DefaultPage = f;
                    w.Update();
 
@@ -157,7 +155,10 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
        /// </summary>
        public override void ItemAdded(SPItemEventProperties properties)
        {
-           base.ItemAdded(properties);
+         //  base.ItemAdded(properties);
+           
+           //Add clientname and clientID to the web properties (below)(
+          // properties.Web.Properties.Add("ClientID", ClientID);
 
       
            var currentWeb = properties.OpenWeb();
@@ -203,7 +204,7 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
                            properties.ListItem["ProposalID"] = ProposalID;
                            properties.ListItem["Title"] = properties.ListItem["Title"].ToString() + " " + webCount.ToString();
                            ProposalName += " " + webCount.ToString();
-                           properties.ListItem.Update();
+                          // properties.ListItem.Update();
 
                        }
 
@@ -218,7 +219,6 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
        }
 
     
-
        /// <summary>
        /// An item is being updated
        /// </summary>

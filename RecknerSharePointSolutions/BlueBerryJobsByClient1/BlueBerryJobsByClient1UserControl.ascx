@@ -16,16 +16,14 @@
     ForeColor="Red"></asp:Label>
 <br />
 
-<asp:Label ID="Label1" runat="server" Text="Year: "></asp:Label>
-<asp:Label
-    ID="lblYear" runat="server"></asp:Label>
-<asp:DataList ID="DataList1" runat="server" CellPadding="4" ForeColor="#333333">
+<asp:DataList ID="DataList1" runat="server" CellPadding="4" ForeColor="#333333" 
+    onitemdatabound="DataList1_ItemDataBound">
     <AlternatingItemStyle BackColor="White" />
     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
     <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
     <ItemStyle BackColor="#EFF3FB" />
     <ItemTemplate>
-        <asp:HyperLink ID="HyperLink1" NavigateUrl= <%# LinkToJobSite + DataBinder.Eval(Container.DataItem, "JobNum") %>   runat="server"><%#DataBinder.Eval(Container.DataItem, "JobNumberWithName") %></asp:HyperLink>
+        <asp:HyperLink ID="HyperLinkToJobSite" runat="server"></asp:HyperLink>
         </ItemTemplate>
     <SelectedItemStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
 </asp:DataList>

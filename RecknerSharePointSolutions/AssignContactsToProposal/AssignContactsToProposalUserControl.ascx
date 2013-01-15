@@ -19,6 +19,7 @@
                     CommandName="AssignContact" Text="Assign"></asp:LinkButton>
             </ItemTemplate>
         </asp:TemplateField>
+        <asp:BoundField DataField="ClientID" HeaderText="ClientID" />
         <asp:BoundField DataField="FirstName" HeaderText="First Name" />
         <asp:BoundField DataField="Title" HeaderText="Last Name" />
         <asp:BoundField DataField="Email" HeaderText="Email" />

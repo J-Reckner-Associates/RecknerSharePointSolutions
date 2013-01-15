@@ -42,6 +42,8 @@ namespace RecknerSharePointSolutions.Blueberry_Contacts_Event_Receiver
            {
                    properties.ListItem["ClientID"] = ClientID;
                    properties.ListItem.Update();
+ 
+             
 
            }
        }

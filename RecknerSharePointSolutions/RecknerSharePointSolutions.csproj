@@ -130,6 +130,14 @@
       <DependentUpon>ListOfSiteTemplatesUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ProposalContact.cs" />
+    <Compile Include="Navigation_Proposals\Navigation_Proposals.cs" />
+    <Compile Include="Navigation_Proposals\Navigation_ProposalsUserControl.ascx.cs">
+      <DependentUpon>Navigation_ProposalsUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Navigation_Proposals\Navigation_ProposalsUserControl.ascx.designer.cs">
+      <DependentUpon>Navigation_ProposalsUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewClientForm\NewClientForm.cs" />
     <Compile Include="NewClientForm\NewClientFormUserControl.ascx.cs">
       <DependentUpon>NewClientFormUserControl.ascx</DependentUpon>
@@ -203,6 +211,10 @@
     <None Include="ListOfSiteTemplates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b3865686-4289-46bd-b9a1-c0551eb79451}</SharePointProjectItemId>
     </None>
+    <None Include="Navigation_Proposals\Navigation_Proposals.webpart" />
+    <None Include="Navigation_Proposals\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5aeb3c37-5ff7-42c0-84d8-d787f696aeac}</SharePointProjectItemId>
+    </None>
     <None Include="NewClientForm\NewClientForm.webpart" />
     <None Include="NewClientForm\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6e1bc67f-955a-47af-9b49-5cf7ae3d3a78}</SharePointProjectItemId>
@@ -262,6 +274,10 @@
     </Content>
     <Content Include="ListOfSiteTemplates\Elements.xml" />
     <Content Include="ListOfSiteTemplates\ListOfSiteTemplatesUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Navigation_Proposals\Elements.xml" />
+    <Content Include="Navigation_Proposals\Navigation_ProposalsUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="NewClientForm\Elements.xml" />
