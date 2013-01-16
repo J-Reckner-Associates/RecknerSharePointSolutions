@@ -6,6 +6,31 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListOfSiteTemplatesUserControl.ascx.cs" Inherits="RecknerSharePointSolutions.ListOfSiteTemplates.ListOfSiteTemplatesUserControl" %>
+ 
+<table  >
+    <tr>
+        <td align="right"  >
+            Client Site Template:</td>
+        <td>
+            <asp:TextBox ID="txtClientSiteTemplate" runat="server" Width="500px"></asp:TextBox>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" class="style2">
+            Proposal Site Template:</td>
+        <td>
+            <asp:TextBox ID="txtProposalTemplate" runat="server" Width="500px"></asp:TextBox>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" class="style2">
+            &nbsp;</td>
+        <td>
+            <asp:Button ID="btnUpdate" runat="server" Text="Update" 
+                onclick="btnUpdate_Click" />
+        </td>
+    </tr>
+</table>
 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
     CellPadding="4" EnableModelValidation="True" ForeColor="#333333" 
     GridLines="None">

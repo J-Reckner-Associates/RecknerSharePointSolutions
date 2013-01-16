@@ -12,6 +12,11 @@ using System.Linq;
  
 namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
 {
+
+    /* 
+     * 1. Make the title column unique to prevent dupplicate site creation
+     * 2. In the template SharePoint Server Publishing feature must be enabled. 
+     */
     /// <summary>
     /// List Item Events
     /// </summary>
@@ -20,10 +25,11 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
         HttpContext ctx = null;
         string ClientID = "";
         string ClientName = "";
-        string TemplateName = "{FB4BEE50-1A67-41C4-8468-58BA91588F1D}#ProposalTemplate_V2";  // "ENTERWIKI#0";
+        string TemplateName = "";
    
         public Blueberry_Proposals_List_Event_Receiver() : base()
         {
+            
             ctx = HttpContext.Current;
             if (ctx != null)
             {
@@ -63,6 +69,7 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
            if (ClientID != string.Empty && ProposalID != string.Empty)
            {
 
+          
                SPSecurity.RunWithElevatedPrivileges(delegate()
                {
 
@@ -70,27 +77,64 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
 
                    SPSite oSite = currentWeb.Site;
 
+                   TemplateName = oSite.RootWeb.Properties["ProposalSiteTemplateName"].ToString();
+
+                   
                    SPWebTemplateCollection wtc = oSite.GetWebTemplates(1033);
 
                    SPWebTemplate wt = wtc[siteTemplateName];
 
                    //Creates a website with uniqueID
-
-
-                   SPWeb newProposalWeb = clientWeb.Webs.Add(ProposalID, ProposalName, ProposalName, 1033, wt, false, false);
                    
+                   SPWeb newProposalWeb = clientWeb.Webs.Add(ProposalID, ProposalName, ProposalName, 1033, wt, false, false);
           
                    newProposalWeb.Navigation.UseShared = true;
+
+                   if (newProposalWeb.Properties.ContainsKey("ClientID"))
+                   {
+
+                       newProposalWeb.Properties["ClientID"] = ClientID;
+                   }
+
+                   else {
+
+                       newProposalWeb.Properties.Add("ClientID", ClientID);
+                   
+                   }
+
+
+                   if (newProposalWeb.Properties.ContainsKey("ClientName"))
+                   {
+
+                       newProposalWeb.Properties["ClientName"] = ClientName;
+                   }
+
+                   else {
+
+                       newProposalWeb.Properties.Add("ClientName", ClientName);
+                   
+                   }
+
+                   if (newProposalWeb.Properties.ContainsKey("ProposalID"))
+                   {
+
+                       newProposalWeb.Properties["ProposalID"] = ProposalID;
+                   }
+                   else {
+
+                       newProposalWeb.Properties.Add("ProposalID", ProposalID);
+                   
+                   }
+                 
+
                    newProposalWeb.Properties.Update();
                    
-                   //Updates default page.
+                   //sets the default page.
                    SPFile f = newProposalWeb.GetFile("Pages/Home.aspx");
 
                    newProposalWeb.Update();
                    PublishingWeb w = PublishingWeb.GetPublishingWeb(newProposalWeb);
-                //   w.Web.Properties.Add("ClientID", ClientID);
-                  // w.Web.Properties.Add("ClientName", ClientName);
-                 //  w.Web.Properties.Add("ProposalID", ProposalID);
+        
                    w.DefaultPage = f;
                    w.Update();
 
@@ -148,7 +192,7 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
            }
 
        }
-
+          
  
        /// <summary>
        /// An item was added
@@ -156,68 +200,27 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
        public override void ItemAdded(SPItemEventProperties properties)
        {
          //  base.ItemAdded(properties);
-           
-           //Add clientname and clientID to the web properties (below)(
-          // properties.Web.Properties.Add("ClientID", ClientID);
-
-      
+            
            var currentWeb = properties.OpenWeb();
-                  
-
+                 
+     
            if (properties.ListTitle == "Proposals")
            {
 
               string ProposalID = RemoveNonAlphaAndSpaces(properties.ListItem["Title"].ToString());
               string  ProposalName = properties.ListItem["Title"].ToString();
-                
+
+     
+              properties.ListItem["ClientID"] = ClientID;
+              properties.ListItem["ProposalID"] = ProposalID;
+              properties.ListItem.Update();
+
+              this.CreateProposalSite(currentWeb, ClientID, ProposalID, ProposalName, TemplateName);
+
+              }
+          }
+       
     
-               properties.ListItem["ClientID"] = ClientID;
-               properties.ListItem["ProposalID"] = ProposalID;
-               properties.ListItem.Update();
-
-               var webCount = 0;
-
-               var clientWeb = currentWeb.Webs[ClientID];
-
-               if (clientWeb.Exists)
-               {
-
-                   var tmp = ProposalID.Substring(0, ProposalID.Length - 2);
-
-                   if (ClientID != string.Empty && ProposalID != string.Empty)
-                   {
-
-                       foreach (SPWeb item in clientWeb.Webs)
-                       {
-                           if (item.Name.ToLower().Contains(tmp))
-                           {
-                               webCount += 1;
-                           }
-
-                       }
-
-                       if (webCount > 0)
-                       {
-
-                           ProposalID += webCount.ToString();
-
-                           properties.ListItem["ProposalID"] = ProposalID;
-                           properties.ListItem["Title"] = properties.ListItem["Title"].ToString() + " " + webCount.ToString();
-                           ProposalName += " " + webCount.ToString();
-                          // properties.ListItem.Update();
-
-                       }
-
-                        
-                       this.CreateProposalSite(currentWeb, ClientID, ProposalID, ProposalName, TemplateName);
-
-
-                   }
-               }
-                
-           }
-       }
-
     
        /// <summary>
        /// An item is being updated
