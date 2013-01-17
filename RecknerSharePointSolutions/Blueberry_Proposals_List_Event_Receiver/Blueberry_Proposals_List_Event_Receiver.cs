@@ -27,7 +27,7 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
         string ClientName = "";
         string TemplateName = "";
    
-        public Blueberry_Proposals_List_Event_Receiver() : base()
+       public Blueberry_Proposals_List_Event_Receiver() : base()
         {
             
             ctx = HttpContext.Current;
@@ -56,15 +56,14 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
             }
             
         }
-
-   
+           
        string RemoveNonAlphaAndSpaces(string source)
        {
 
            return Regex.Replace(source, @"\W|_", string.Empty);
        }
 
-       void CreateProposalSite(SPWeb currentWeb, string ClientID, string ProposalID, string ProposalName, string siteTemplateName)
+       void CreateProposalSite(SPWeb currentWeb, string ClientID, string ProposalID, string ProposalName)
        {
            if (ClientID != string.Empty && ProposalID != string.Empty)
            {
@@ -82,7 +81,7 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
                    
                    SPWebTemplateCollection wtc = oSite.GetWebTemplates(1033);
 
-                   SPWebTemplate wt = wtc[siteTemplateName];
+                   SPWebTemplate wt = wtc[TemplateName];
 
                    //Creates a website with uniqueID
                    
@@ -215,13 +214,12 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
               properties.ListItem["ProposalID"] = ProposalID;
               properties.ListItem.Update();
 
-              this.CreateProposalSite(currentWeb, ClientID, ProposalID, ProposalName, TemplateName);
+              this.CreateProposalSite(currentWeb, ClientID, ProposalID, ProposalName);
 
               }
           }
        
-    
-    
+        
        /// <summary>
        /// An item is being updated
        /// </summary>

@@ -10,29 +10,77 @@ namespace RecknerSharePointSolutions.Proposal2Job
     {
         public Proposal2Job ThisWebPart { get; set; }
 
+        SPSite oSite;
+
+        void populateJobList() {
+
+            
+
+            foreach (SPWeb item in oSite.AllWebs)
+            {
+                lstJobs.Items.Add(new ListItem(item.Title, item.Url));          
+            }
+
+        
+        }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             this.ThisWebPart = this.Parent as Proposal2Job;
 
+            btnMove.Enabled = Context.User.IsInRole(ThisWebPart.AuthorizedRole) || Context.User.IsInRole("Domain Admins") ;
+
             if (!Page.IsPostBack) {
 
-                SPWeb currentWeb = SPContext.Current.Web;
+               oSite = new SPSite("http://dev-work.reckner.com/jobs" + "/" + 2011); //DateTime.Now.Year);
 
-                SPFolder documentsFolder = currentWeb.Folders["Documents"];
+                SPSecurity.RunWithElevatedPrivileges(delegate() {
 
-                string ClientID = "";
+                    populateJobList();
 
-                if (currentWeb.Properties.ContainsKey("ClientID")) {
 
-                    ClientID = currentWeb.Properties["ClientID"];
+                });
+
+
+         
                 
-                }
-
-                HyperLink1.NavigateUrl = ThisWebPart.JobCreateAppUrl + "?SiteUrl=" + documentsFolder.ParentWeb.Url.ToString() + "&ClientID=" + ClientID;
-            
+             
             }
+        }
+
+        protected void btnMove_Click(object sender, EventArgs e)
+        {
+            oSite = new SPSite("http://dev-work.reckner.com/jobs" + "/" + 2011); //DateTime.Now.Year);
+
+               SPSecurity.RunWithElevatedPrivileges(delegate() {
+               
+
+                   try
+                   {
+                        SPWeb currentWeb = SPContext.Current.Web;
+                        SPWeb destinationWeb = oSite.AllWebs[lstJobs.SelectedItem.Value];
+
+                        SPList sourceList = currentWeb.Lists["Documents"];
+                        SPList destionationList = currentWeb.Lists["Shared Documents"];
+                        SPListItemCollection sourceItems = sourceList.Items;
+
+
+                        foreach (SPListItem item in sourceItems)
+                        {
+                           // item.copy
+                        }
+                            
+ 
+
+                   }
+                   catch (Exception ex)
+                   {
+
+                       lblMessage.Text = ex.Message;
+                   }
+           });
         }
     }
 }

@@ -77,9 +77,7 @@ namespace RecknerSharePointSolutions.ContentCopier
 
             SPSecurity.RunWithElevatedPrivileges(delegate
             {
-
-               
-
+                
                 using (SPWeb sourceWeb = new SPSite(SPContext.Current.Web.Url).OpenWeb())
                 {
                     SPExportSettings settings = new SPExportSettings();
@@ -89,8 +87,7 @@ namespace RecknerSharePointSolutions.ContentCopier
                     settings.FileCompression = false;
                     settings.CommandLineVerbose = true;
                     settings.OverwriteExistingDataFile = true;
-                   
-
+                    
                     foreach (SPList item in sourceWeb.Lists)
                     {
                         SPExportObject exportObject = new SPExportObject();
@@ -127,10 +124,12 @@ namespace RecknerSharePointSolutions.ContentCopier
                         settings.RetainObjectIdentity = false;
                         settings.LogFilePath = ContentCopierWebPart.ExportLocation + @"\export_log.txt";
                         settings.IgnoreWebParts = true;
-                        
+                         
                        
                         SPImport import = new SPImport(settings);
-                       
+
+                      
+
                         import.Run();
                         HttpContext.Current.Items["FormDigestValidated"] = "false";
                         destinationWeb.AllowUnsafeUpdates = false;

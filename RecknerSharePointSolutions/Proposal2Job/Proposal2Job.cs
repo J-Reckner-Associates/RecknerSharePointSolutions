@@ -12,19 +12,21 @@ namespace RecknerSharePointSolutions.Proposal2Job
     [ToolboxItemAttribute(false)]
     public class Proposal2Job : WebPart
     {
-        string _jobCreateAppUrl = "";
-        string _siteUrl = "";
+        
+        string _jobSiteUrl = "";
+        string _authorizedRole = "";
 
         [WebBrowsable(true)]
         [Personalizable(PersonalizationScope.Shared)]
         [Category("Settings")]
-        [DefaultValue(@"http://dev-home.reckner.com/BlueBerry/ ")]
-        public String SiteUrl { get { return _siteUrl; } set { _siteUrl = value; } }
+        [DefaultValue(@"http://dev-work.reckner.com/jobs ")]
+        public String JobSiteUrl { get { return _jobSiteUrl; } set { _jobSiteUrl = value; } }
 
         [WebBrowsable(true)]
         [Personalizable(PersonalizationScope.Shared)]
         [Category("Settings")]
-        public String JobCreateAppUrl { get { return _jobCreateAppUrl; } set { _jobCreateAppUrl = value; } }
+        public String AuthorizedRole { get { return _authorizedRole; } set { _authorizedRole = value; } }
+
 
 
         // Visual Studio might automatically update this path when you change the Visual Web Part project item.

@@ -6,4 +6,12 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Proposal2JobUserControl.ascx.cs" Inherits="RecknerSharePointSolutions.Proposal2Job.Proposal2JobUserControl" %>
-<asp:HyperLink ID="HyperLink1" runat="server"><span class="sprite ss_arrow_refresh">Convert to a Job</span></asp:HyperLink>
+
+<div style="float: right">
+
+<asp:DropDownList ID="lstJobs" runat="server" Width="450px">
+</asp:DropDownList>
+&nbsp;<asp:Button ID="btnMove" runat="server" Text="Move" onclick="btnMove_Click" />
+<br />
+<asp:Label ID="lblMessage" runat="server" Font-Size="XX-Large" ForeColor="Red"></asp:Label>
+</div>
