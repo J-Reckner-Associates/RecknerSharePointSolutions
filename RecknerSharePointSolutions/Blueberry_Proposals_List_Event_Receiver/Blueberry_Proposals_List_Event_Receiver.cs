@@ -63,7 +63,7 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
            return Regex.Replace(source, @"\W|_", string.Empty);
        }
 
-       void CreateProposalSite(SPWeb currentWeb, string ClientID, string ProposalID, string ProposalName)
+       void CreateProposalSite(SPWeb currentWeb, string ClientID, string ProposalID, string ProposalName, int ProposalRecordID)
        {
            if (ClientID != string.Empty && ProposalID != string.Empty)
            {
@@ -124,6 +124,22 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
                        newProposalWeb.Properties.Add("ProposalID", ProposalID);
                    
                    }
+
+
+                   if (newProposalWeb.Properties.ContainsKey("ProposalRecordID"))
+                   {
+
+                       newProposalWeb.Properties["ProposalRecordID"] = ProposalRecordID.ToString();
+                   }
+                   else
+                   {
+
+                       newProposalWeb.Properties.Add("ProposalRecordID", ProposalRecordID.ToString());
+
+                   }
+
+
+
                  
 
                    newProposalWeb.Properties.Update();
@@ -214,7 +230,7 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
               properties.ListItem["ProposalID"] = ProposalID;
               properties.ListItem.Update();
 
-              this.CreateProposalSite(currentWeb, ClientID, ProposalID, ProposalName);
+              this.CreateProposalSite(currentWeb, ClientID, ProposalID, ProposalName, properties.ListItem.ID);
 
               }
           }

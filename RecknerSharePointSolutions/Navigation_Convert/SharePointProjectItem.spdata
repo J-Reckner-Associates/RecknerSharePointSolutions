@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.VisualWebPart" DefaultFile="Navigation_ConvertUserControl.ascx" SupportedTrustLevels="FullTrust" SupportedDeploymentScopes="Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="Navigation_Convert\" Type="ElementManifest" />
+    <ProjectItemFile Source="Navigation_Convert.webpart" Target="Navigation_Convert\" Type="ElementFile" />
+    <ProjectItemFile Source="Navigation_ConvertUserControl.ascx" Target="CONTROLTEMPLATES\RecknerSharePointSolutions\Navigation_Convert\" Type="TemplateFile" />
+  </Files>
+  <SafeControls>
+    <SafeControl Name="SafeControlEntry1" Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="RecknerSharePointSolutions.Navigation_Convert" TypeName="*" IsSafe="true" IsSafeAgainstScript="false" />
+  </SafeControls>
+</ProjectItem>

@@ -12,7 +12,7 @@ namespace RecknerSharePointSolutions.ContentCopier
     [ToolboxItemAttribute(false)]
     public class ContentCopier : WebPart
     {
-        private String _ExportLocation = @"F:\Export";
+        private String _ExportLocation = @"c:\Export";
         private String _AuthorizedRole = @"Reckner\Domain Admins";
         private String _CopyMessage = "Copy all setup materials to";
         
@@ -24,7 +24,7 @@ namespace RecknerSharePointSolutions.ContentCopier
         [WebBrowsable(true)]
         [Personalizable(PersonalizationScope.Shared)]
         [Category("Settings")]
-        [DefaultValue(@"F:\Export")]
+        [DefaultValue(@"c:\Export")]
         public String ExportLocation { get {return _ExportLocation ; } set {_ExportLocation = value;} }
 
         [WebBrowsable(true)]

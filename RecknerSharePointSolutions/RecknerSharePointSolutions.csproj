@@ -130,6 +130,14 @@
       <DependentUpon>ListOfSiteTemplatesUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ProposalContact.cs" />
+    <Compile Include="Navigation_Convert\Navigation_Convert.cs" />
+    <Compile Include="Navigation_Convert\Navigation_ConvertUserControl.ascx.cs">
+      <DependentUpon>Navigation_ConvertUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Navigation_Convert\Navigation_ConvertUserControl.ascx.designer.cs">
+      <DependentUpon>Navigation_ConvertUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Navigation_Proposals\Navigation_Proposals.cs" />
     <Compile Include="Navigation_Proposals\Navigation_ProposalsUserControl.ascx.cs">
       <DependentUpon>Navigation_ProposalsUserControl.ascx</DependentUpon>
@@ -211,6 +219,10 @@
     <None Include="ListOfSiteTemplates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b3865686-4289-46bd-b9a1-c0551eb79451}</SharePointProjectItemId>
     </None>
+    <None Include="Navigation_Convert\Navigation_Convert.webpart" />
+    <None Include="Navigation_Convert\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{41134e11-ad62-4c4b-a46a-3f97f479c1a5}</SharePointProjectItemId>
+    </None>
     <None Include="Navigation_Proposals\Navigation_Proposals.webpart" />
     <None Include="Navigation_Proposals\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5aeb3c37-5ff7-42c0-84d8-d787f696aeac}</SharePointProjectItemId>
@@ -274,6 +286,10 @@
     </Content>
     <Content Include="ListOfSiteTemplates\Elements.xml" />
     <Content Include="ListOfSiteTemplates\ListOfSiteTemplatesUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Navigation_Convert\Elements.xml" />
+    <Content Include="Navigation_Convert\Navigation_ConvertUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Navigation_Proposals\Elements.xml" />

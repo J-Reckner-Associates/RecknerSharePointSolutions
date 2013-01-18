@@ -12,20 +12,27 @@ namespace RecknerSharePointSolutions.Proposal2Job
     [ToolboxItemAttribute(false)]
     public class Proposal2Job : WebPart
     {
-        
-        string _jobSiteUrl = "";
-        string _authorizedRole = "";
+
+        private String _ExportLocation = @"c:\Export";
+        private String _AuthorizedRole = @"Reckner\Domain Admins";
+        private String _CopyMessage = "Copy all setup materials to";
+        private String _destinationSiteCollectionUrl = "http://dev-work.reckner.com/jobs";
 
         [WebBrowsable(true)]
         [Personalizable(PersonalizationScope.Shared)]
         [Category("Settings")]
-        [DefaultValue(@"http://dev-work.reckner.com/jobs ")]
-        public String JobSiteUrl { get { return _jobSiteUrl; } set { _jobSiteUrl = value; } }
+        public String DestionationSiteCollectionUrl { get; set; }
 
         [WebBrowsable(true)]
         [Personalizable(PersonalizationScope.Shared)]
         [Category("Settings")]
-        public String AuthorizedRole { get { return _authorizedRole; } set { _authorizedRole = value; } }
+        [DefaultValue(@"c:\Export")]
+        public String ExportLocation { get { return _ExportLocation; } set { _ExportLocation = value; } }
+
+        [WebBrowsable(true)]
+        [Personalizable(PersonalizationScope.Shared)]
+        [Category("Settings")]
+        public String AuthorizedRole { get { return _AuthorizedRole; } set { _AuthorizedRole = value; } }
 
 
 

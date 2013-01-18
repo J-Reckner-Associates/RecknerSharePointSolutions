@@ -3,6 +3,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Deployment;
+using System.Web;
 
 namespace RecknerSharePointSolutions.Proposal2Job
 {
@@ -14,14 +16,11 @@ namespace RecknerSharePointSolutions.Proposal2Job
 
         void populateJobList() {
 
-            
-
             foreach (SPWeb item in oSite.AllWebs)
             {
                 lstJobs.Items.Add(new ListItem(item.Title, item.Url));          
             }
 
-        
         }
 
 
@@ -34,53 +33,107 @@ namespace RecknerSharePointSolutions.Proposal2Job
 
             if (!Page.IsPostBack) {
 
-               oSite = new SPSite("http://dev-work.reckner.com/jobs" + "/" + 2011); //DateTime.Now.Year);
+                if (ThisWebPart.DestionationSiteCollectionUrl != null)
+                {
 
-                SPSecurity.RunWithElevatedPrivileges(delegate() {
+                    oSite = new SPSite(ThisWebPart.DestionationSiteCollectionUrl + "/jobs/" + DateTime.Now.Year);
 
-                    populateJobList();
+                    SPSecurity.RunWithElevatedPrivileges(delegate()
+                    {
+
+                        populateJobList();
 
 
-                });
-
-
-         
-                
-             
+                    });
+                }
+                             
             }
         }
 
         protected void btnMove_Click(object sender, EventArgs e)
         {
-            oSite = new SPSite("http://dev-work.reckner.com/jobs" + "/" + 2011); //DateTime.Now.Year);
+            if (ThisWebPart.DestionationSiteCollectionUrl != null)
+            {
 
-               SPSecurity.RunWithElevatedPrivileges(delegate() {
-               
+                oSite = new SPSite(ThisWebPart.DestionationSiteCollectionUrl + "/jobs/" + DateTime.Now.Year);
 
-                   try
-                   {
-                        SPWeb currentWeb = SPContext.Current.Web;
-                        SPWeb destinationWeb = oSite.AllWebs[lstJobs.SelectedItem.Value];
+                SPSecurity.RunWithElevatedPrivileges(delegate
+                {
 
-                        SPList sourceList = currentWeb.Lists["Documents"];
-                        SPList destionationList = currentWeb.Lists["Shared Documents"];
-                        SPListItemCollection sourceItems = sourceList.Items;
+                    using (SPWeb sourceWeb = new SPSite(SPContext.Current.Web.Url).OpenWeb())
+                    {
+                        SPExportSettings settings = new SPExportSettings();
+                        settings.SiteUrl = sourceWeb.Site.Url;
+                        settings.ExportMethod = SPExportMethodType.ExportAll;
+                        settings.FileLocation = ThisWebPart.ExportLocation;
+                        settings.FileCompression = false;
+                        settings.CommandLineVerbose = true;
+                        settings.OverwriteExistingDataFile = true;
 
-
-                        foreach (SPListItem item in sourceItems)
+                        foreach (SPList item in sourceWeb.Lists)
                         {
-                           // item.copy
+                            SPExportObject exportObject = new SPExportObject();
+                            exportObject.Id = item.ID;
+                            exportObject.Type = SPDeploymentObjectType.List;
+                            settings.ExportObjects.Add(exportObject);
                         }
-                            
- 
 
-                   }
-                   catch (Exception ex)
-                   {
+                        SPExport export = new SPExport(settings);
 
-                       lblMessage.Text = ex.Message;
-                   }
-           });
+                        export.Run();
+
+
+                    }
+
+
+                });
+
+                SPWeb destinationWeb = new SPSite(lstJobs.SelectedItem.Value).OpenWeb();
+
+                SPSecurity.RunWithElevatedPrivileges(delegate
+                {
+
+                    HttpContext.Current.Items["FormDigestValidated"] = "false";
+                    destinationWeb.AllowUnsafeUpdates = true;
+
+
+                    SPImportSettings settings = new SPImportSettings();
+                    settings.SiteUrl = destinationWeb.Site.Url;
+                    settings.WebUrl = lstJobs.SelectedItem.Value;
+                    settings.FileLocation = ThisWebPart.ExportLocation;
+                    settings.FileCompression = false;
+                    settings.RetainObjectIdentity = false;
+                    settings.LogFilePath = ThisWebPart.ExportLocation + @"\export_log.txt";
+                    settings.IgnoreWebParts = true;
+
+                    SPImport import = new SPImport(settings);
+
+                    import.Run();
+                    HttpContext.Current.Items["FormDigestValidated"] = "false";
+                    destinationWeb.AllowUnsafeUpdates = false;
+
+                });
+
+                var currentUser = Request.LogonUserIdentity.ToString();
+
+
+                SPSecurity.RunWithElevatedPrivileges(delegate
+                {
+
+
+
+                    SPWeb sourceWeb = new SPSite(SPContext.Current.Web.Url).OpenWeb();
+                    sourceWeb.AllowUnsafeUpdates = true;
+
+                    sourceWeb.Delete();
+
+                    //TODO: Update proposal record here get with the ID then update.
+
+
+                });
+
+                Response.Redirect(destinationWeb.Url);
+            }
         }
     }
 }
