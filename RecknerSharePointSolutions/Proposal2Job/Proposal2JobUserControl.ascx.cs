@@ -120,14 +120,25 @@ namespace RecknerSharePointSolutions.Proposal2Job
                 SPSecurity.RunWithElevatedPrivileges(delegate
                 {
 
-
-
                     SPWeb sourceWeb = new SPSite(SPContext.Current.Web.Url).OpenWeb();
+                    //TODO: Update proposal record here get with the ID then update.
+
+
+                    SPWeb blueberryWeb = sourceWeb.Site.AllWebs["Blueberry"];
+                    SPList proposalList = blueberryWeb.Lists["Proposals"];
+                    var proposalRecordID = int.Parse(sourceWeb.Properties["ProposalRecordID"].ToString());
+
+                    SPListItem proposalRecord = proposalList.GetItemById(proposalRecordID);
+                    proposalRecord["JobNumber"] = lstJobs.SelectedItem.Text;
+                    proposalRecord["BecameJobOn"] = DateTime.Now;
+                    proposalRecord.Update();
+
+
+                    
                     sourceWeb.AllowUnsafeUpdates = true;
 
                     sourceWeb.Delete();
 
-                    //TODO: Update proposal record here get with the ID then update.
 
 
                 });

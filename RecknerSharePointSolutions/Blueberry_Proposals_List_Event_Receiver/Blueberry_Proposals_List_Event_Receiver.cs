@@ -139,9 +139,6 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
                    }
 
 
-
-                 
-
                    newProposalWeb.Properties.Update();
                    
                    //sets the default page.
