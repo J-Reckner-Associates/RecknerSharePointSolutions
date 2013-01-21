@@ -42,14 +42,12 @@ namespace RecknerSharePointSolutions.ProposalContacts
                         var pContact = new ProposalContact();
 
                         pContact.Id = a.UniqueId;
-                        pContact.FullName = a["LinkTitleNoMenu"].ToString() + " " + a["LinkTitle"];
+                        pContact.FullName = a["FirstName"].ToString() + " " + a["LinkTitle"];
                         pContact.Phone = a.Fields["Phone"].GetFieldValueAsText(a["Phone"]);
                         pContact.Email = a.Fields["Email"].GetFieldValueAsText(a["Email"]);
                         arrDisplayContacts.Add(pContact);
-
-
-                        //Convert list item to an object. .......................................................................................
-
+ 
+                    
                     }
                 }
 

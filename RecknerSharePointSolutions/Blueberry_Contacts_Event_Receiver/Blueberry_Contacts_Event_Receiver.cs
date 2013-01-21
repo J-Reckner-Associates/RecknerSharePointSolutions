@@ -36,13 +36,17 @@ namespace RecknerSharePointSolutions.Blueberry_Contacts_Event_Receiver
        /// </summary>
        public override void ItemAdded(SPItemEventProperties properties)
        {
-           base.ItemAdded(properties);
+            base.ItemAdded(properties);
 
            if (properties.ListTitle == "ClientContacts")
            {
                    properties.ListItem["ClientID"] = ClientID;
                    properties.ListItem.Update();
- 
+
+                   SPWeb clientWeb = properties.Web.Webs[ClientID];
+                
+                   SPUtility.Redirect(clientWeb.Url, SPRedirectFlags.Default, ctx);
+
              
 
            }

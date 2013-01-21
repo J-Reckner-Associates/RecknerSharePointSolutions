@@ -17,31 +17,14 @@ namespace RecknerSharePointSolutions.SearchClient
 
 
         string _siteUrl = "http://dev-home.reckner.com/BlueBerry/";
-        string _siteTemplateName = "ENTERWIKI#0";
-        string _newClientFormUrl = "";
-
-        [WebBrowsable(true)]
-        [Personalizable(PersonalizationScope.Shared)]
-        [Category("Settings")]
-        public String SiteTemplate { get { return _siteTemplateName; } set { _siteTemplateName = value; } }
-
-
-
-
+        
+ 
         [WebBrowsable(true)]
         [Personalizable(PersonalizationScope.Shared)]
         [Category("Settings")]
         [DefaultValue(@"http://dev-home.reckner.com/BlueBerry/ ")]
         public String SiteUrl { get { return _siteUrl; } set { _siteUrl = value; } }
-
-
-        [WebBrowsable(true)]
-        [Personalizable(PersonalizationScope.Shared)]
-        [Category("Settings")]
-        [DefaultValue(@"http://dev-home.reckner.com/BlueBerry/ ")]
-        public String NewClientFormUrl { get { return _newClientFormUrl; } set { _newClientFormUrl = value; } }
-
-
+         
 
         protected override void CreateChildControls()
         {

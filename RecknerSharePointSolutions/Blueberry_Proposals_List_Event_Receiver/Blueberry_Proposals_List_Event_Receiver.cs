@@ -63,15 +63,17 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
            return Regex.Replace(source, @"\W|_", string.Empty);
        }
 
-       void CreateProposalSite(SPWeb currentWeb, string ClientID, string ProposalID, string ProposalName, int ProposalRecordID)
+      string CreateProposalSite(SPWeb currentWeb, string ClientID, string ProposalID, string ProposalName, int ProposalRecordID)
        {
+           var redirectToProposal = "";
+
            if (ClientID != string.Empty && ProposalID != string.Empty)
            {
 
           
                SPSecurity.RunWithElevatedPrivileges(delegate()
                {
-
+                   
                    SPWeb clientWeb = currentWeb.Webs[ClientID];
 
                    SPSite oSite = currentWeb.Site;
@@ -150,13 +152,18 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
                    w.DefaultPage = f;
                    w.Update();
 
+                   redirectToProposal = newProposalWeb.Url;
+
                    newProposalWeb.Close();
                    w.Close();
 
+                 
  
                });
-
+              
            }
+
+           return redirectToProposal;
        }
 
        /// <summary>
@@ -227,7 +234,9 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
               properties.ListItem["ProposalID"] = ProposalID;
               properties.ListItem.Update();
 
-              this.CreateProposalSite(currentWeb, ClientID, ProposalID, ProposalName, properties.ListItem.ID);
+              var redirectToProposalUrl =    this.CreateProposalSite(currentWeb, ClientID, ProposalID, ProposalName, properties.ListItem.ID);
+
+              SPUtility.Redirect(redirectToProposalUrl, SPRedirectFlags.Default, ctx);
 
               }
           }

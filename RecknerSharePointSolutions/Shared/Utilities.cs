@@ -11,7 +11,7 @@ namespace RecknerSharePointSolutions.Shared
 {
    public static class Utilities
     {
-       public static string CreateWebSite(string ClientID, string ClientName, string ProposalID, string siteTemplateName)
+       public static string CreateClientWebSite(string ClientID, string ClientName)
        {
            var redirectUrl = "";
 
@@ -22,6 +22,8 @@ namespace RecknerSharePointSolutions.Shared
               
                SPSite oSite = SPContext.Current.Site;
 
+               var siteTemplateName = oSite.RootWeb.Properties["ClientSiteTemplateName"].ToString();
+
                SPWebTemplateCollection wtc = oSite.GetWebTemplates(1033);
 
                SPWebTemplate wt = wtc[siteTemplateName];
@@ -29,16 +31,37 @@ namespace RecknerSharePointSolutions.Shared
                //Creates a website with uniqueID
                SPWeb newWeb = currentWeb.Webs.Add(ClientID, ClientName, ClientName, 1033, wt, false, false);
 
-         
-               newWeb.Properties.Add("ClientID", ClientID);
-               newWeb.Properties.Add("ClientName", ClientName);
-               newWeb.Properties.Add("ProposalID", ProposalID);
-               newWeb.Properties.Update();
+               if (newWeb.Properties.ContainsKey("ClientID"))
+               {
+
+                   newWeb.Properties["ClientID"] = ClientID;
+               }
+
+               else {
+
+                   newWeb.Properties.Add("ClientID", ClientID);
+               }
+
+               if (newWeb.Properties.ContainsKey("ClientName"))
+               {
+
+                   newWeb.Properties["ClientName"] = ClientID;
+               }
+
+               else
+               {
+
+                   newWeb.Properties.Add("ClientName", ClientID);
+               }
+
+                
+              
+                newWeb.Properties.Update();
 
                newWeb.Navigation.UseShared = true;
 
                //Updates default page.
-               SPFile f = newWeb.GetFile("pages/Default.aspx");
+               SPFile f = newWeb.GetFile("pages/Home.aspx");
 
                newWeb.Update();
                PublishingWeb w = PublishingWeb.GetPublishingWeb(newWeb);

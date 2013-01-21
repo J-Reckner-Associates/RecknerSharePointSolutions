@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.VisualWebPart" DefaultFile="Navigation_ClientUserControl.ascx" SupportedTrustLevels="FullTrust" SupportedDeploymentScopes="Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="Navigation_Client\" Type="ElementManifest" />
+    <ProjectItemFile Source="Navigation_Client.webpart" Target="Navigation_Client\" Type="ElementFile" />
+    <ProjectItemFile Source="Navigation_ClientUserControl.ascx" Target="CONTROLTEMPLATES\RecknerSharePointSolutions\Navigation_Client\" Type="TemplateFile" />
+  </Files>
+  <SafeControls>
+    <SafeControl Name="SafeControlEntry1" Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="RecknerSharePointSolutions.Navigation_Client" TypeName="*" IsSafe="true" IsSafeAgainstScript="false" />
+  </SafeControls>
+</ProjectItem>

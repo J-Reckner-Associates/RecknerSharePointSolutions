@@ -90,7 +90,7 @@ namespace RecknerSharePointSolutions.NewClientForm
 
                 c.Save();
 
-                var redirectUrl = Shared.Utilities.CreateWebSite(txtClientID.Text, txtClientID.Text, "", ThisWebPart.SiteTemplate);
+                var redirectUrl = Shared.Utilities.CreateClientWebSite(txtClientID.Text, txtClientID.Text);
 
                 Response.Redirect(redirectUrl);
             }

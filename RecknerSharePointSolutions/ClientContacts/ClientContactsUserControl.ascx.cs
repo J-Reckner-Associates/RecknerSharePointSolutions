@@ -36,19 +36,26 @@ namespace RecknerSharePointSolutions.ClientContacts
 
                     }
 
-                
 
-                    DataView dv = contactList.Items.GetDataTable().AsDataView();
-
-
-                    if (ClientID != string.Empty)
+                    if (contactList.ItemCount > 0)
                     {
 
-                        dv.RowFilter = "ClientID='" + ClientID + "'";
+
+                        DataView dv = contactList.Items.GetDataTable().AsDataView();
+
+
+                        if (ClientID != string.Empty)
+                        {
+
+                            dv.RowFilter = "ClientID='" + ClientID + "'";
+                        }
+
+                        GridView1.DataSource = dv;
+                        GridView1.DataBind();
+
                     }
 
-                    GridView1.DataSource = dv;
-                    GridView1.DataBind();
+
                 }
                 catch (Exception ex)
                 {

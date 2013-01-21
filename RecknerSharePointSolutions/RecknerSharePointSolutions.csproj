@@ -130,6 +130,14 @@
       <DependentUpon>ListOfSiteTemplatesUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ProposalContact.cs" />
+    <Compile Include="Navigation_Client\Navigation_Client.cs" />
+    <Compile Include="Navigation_Client\Navigation_ClientUserControl.ascx.cs">
+      <DependentUpon>Navigation_ClientUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Navigation_Client\Navigation_ClientUserControl.ascx.designer.cs">
+      <DependentUpon>Navigation_ClientUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Navigation_Convert\Navigation_Convert.cs" />
     <Compile Include="Navigation_Convert\Navigation_ConvertUserControl.ascx.cs">
       <DependentUpon>Navigation_ConvertUserControl.ascx</DependentUpon>
@@ -219,6 +227,10 @@
     <None Include="ListOfSiteTemplates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b3865686-4289-46bd-b9a1-c0551eb79451}</SharePointProjectItemId>
     </None>
+    <None Include="Navigation_Client\Navigation_Client.webpart" />
+    <None Include="Navigation_Client\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{71fde376-aeec-4736-8ebd-0019fbb3854b}</SharePointProjectItemId>
+    </None>
     <None Include="Navigation_Convert\Navigation_Convert.webpart" />
     <None Include="Navigation_Convert\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{41134e11-ad62-4c4b-a46a-3f97f479c1a5}</SharePointProjectItemId>
@@ -286,6 +298,10 @@
     </Content>
     <Content Include="ListOfSiteTemplates\Elements.xml" />
     <Content Include="ListOfSiteTemplates\ListOfSiteTemplatesUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Navigation_Client\Elements.xml" />
+    <Content Include="Navigation_Client\Navigation_ClientUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Navigation_Convert\Elements.xml" />

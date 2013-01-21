@@ -53,7 +53,7 @@ namespace RecknerSharePointSolutions.SearchClient
                 var ClientID = cmdArg.Split(Char.Parse("|"))[0];
                 var ClientName = cmdArg.Split(Char.Parse("|"))[1];
                 
-                var redirectUrl = Shared.Utilities.CreateWebSite(ClientID, ClientName, "", ThisWebPart.SiteTemplate);
+                var redirectUrl = Shared.Utilities.CreateClientWebSite(ClientID, ClientName);
 
                 Response.Redirect(redirectUrl);
 
@@ -98,7 +98,10 @@ namespace RecknerSharePointSolutions.SearchClient
 
         protected void btnNewClient_Click(object sender, EventArgs e)
         {
-            Response.Redirect(ThisWebPart.NewClientFormUrl);
+            
+            var createNewClientUrl = Request.Url.ToString().Substring(0, Request.Url.ToString().LastIndexOf("/")) + "/createnewclient.aspx";
+
+             Response.Redirect(createNewClientUrl);
         }
 
     }
