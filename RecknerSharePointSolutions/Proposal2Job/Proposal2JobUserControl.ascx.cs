@@ -36,12 +36,14 @@ namespace RecknerSharePointSolutions.Proposal2Job
                 if (ThisWebPart.DestionationSiteCollectionUrl != null)
                 {
 
-                    oSite = new SPSite(ThisWebPart.DestionationSiteCollectionUrl + "/jobs/" + DateTime.Now.Year);
-
+          
                     SPSecurity.RunWithElevatedPrivileges(delegate()
-                    {
+                    {         
+                        
+                        oSite = new SPSite(ThisWebPart.DestionationSiteCollectionUrl + "/jobs/" + DateTime.Now.Year);
 
-                        populateJobList();
+
+                      populateJobList();
 
 
                     });
@@ -121,8 +123,7 @@ namespace RecknerSharePointSolutions.Proposal2Job
                 {
 
                     SPWeb sourceWeb = new SPSite(SPContext.Current.Web.Url).OpenWeb();
-                    //TODO: Update proposal record here get with the ID then update.
-
+                   
 
                     SPWeb blueberryWeb = sourceWeb.Site.AllWebs["Blueberry"];
                     SPList proposalList = blueberryWeb.Lists["Proposals"];

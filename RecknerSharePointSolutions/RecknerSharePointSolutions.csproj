@@ -42,7 +42,7 @@
   <ItemGroup>
     <Reference Include="Csla, Version=3.8.4.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>I:\hayri\ProductionDlls\Csla.dll</HintPath>
+      <HintPath>ProductionDlls\Csla.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SharePoint.Publishing, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -54,11 +54,11 @@
     </Reference>
     <Reference Include="Production.Dal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8deb91772b7fe83c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>I:\hayri\ProductionDlls\Production.Dal.dll</HintPath>
+      <HintPath>ProductionDlls\Production.Dal.dll</HintPath>
     </Reference>
     <Reference Include="Production.DalADO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d21a9f725ecd5567, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>I:\hayri\ProductionDlls\Production.DalADO.dll</HintPath>
+      <HintPath>ProductionDlls\Production.DalADO.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -66,6 +66,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
@@ -111,6 +112,7 @@
       <DependentUpon>ContentCopierUserControl.ascx.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="ExtensionMethods\Extensions.cs" />
     <Compile Include="HelloWorld\HelloWorld.cs" />
     <Compile Include="HelloWorld\HelloWorldUserControl.ascx.cs">
       <DependentUpon>HelloWorldUserControl.ascx</DependentUpon>
@@ -161,6 +163,14 @@
     </Compile>
     <Compile Include="NewClientForm\NewClientFormUserControl.ascx.designer.cs">
       <DependentUpon>NewClientFormUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParTimeAverages\ParTimeAverages.cs" />
+    <Compile Include="ParTimeAverages\ParTimeAveragesUserControl.ascx.cs">
+      <DependentUpon>ParTimeAveragesUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ParTimeAverages\ParTimeAveragesUserControl.ascx.designer.cs">
+      <DependentUpon>ParTimeAveragesUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proposal2Job\Proposal2Job.cs" />
@@ -249,6 +259,10 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="ParTimeAverages\ParTimeAverages.webpart" />
+    <None Include="ParTimeAverages\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4c4044da-5180-4075-a34a-a56eeae67989}</SharePointProjectItemId>
+    </None>
     <None Include="Proposal2Job\Proposal2Job.webpart" />
     <None Include="Proposal2Job\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8f12d504-c411-44a3-8c2e-aae4cbb2e75b}</SharePointProjectItemId>
@@ -301,9 +315,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Navigation_Client\Elements.xml" />
-    <Content Include="Navigation_Client\Navigation_ClientUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Navigation_Client\Navigation_ClientUserControl.ascx" />
     <Content Include="Navigation_Convert\Elements.xml" />
     <Content Include="Navigation_Convert\Navigation_ConvertUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -314,6 +326,10 @@
     </Content>
     <Content Include="NewClientForm\Elements.xml" />
     <Content Include="NewClientForm\NewClientFormUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="ParTimeAverages\Elements.xml" />
+    <Content Include="ParTimeAverages\ParTimeAveragesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Proposal2Job\Elements.xml" />

@@ -13,7 +13,7 @@ namespace RecknerSharePointSolutions.ContentCopier
     public class ContentCopier : WebPart
     {
         private String _ExportLocation = @"c:\Export";
-        private String _AuthorizedRole = @"Reckner\Domain Admins";
+        private String _AuthorizedRole = @"Reckner\SP - Qualitative Project Managers";
         private String _CopyMessage = "Copy all setup materials to";
         
         [WebBrowsable(true)]

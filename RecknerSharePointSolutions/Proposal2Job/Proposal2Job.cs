@@ -14,7 +14,7 @@ namespace RecknerSharePointSolutions.Proposal2Job
     {
 
         private String _ExportLocation = @"c:\Export";
-        private String _AuthorizedRole = @"Reckner\Domain Admins";
+        private String _AuthorizedRole = @"Reckner\SP - Blueberry Moderators";
         private String _CopyMessage = "Copy all setup materials to";
         private String _destinationSiteCollectionUrl = "http://dev-work.reckner.com/jobs";
 

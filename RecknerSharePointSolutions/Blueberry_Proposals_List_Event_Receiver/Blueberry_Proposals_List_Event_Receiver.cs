@@ -144,7 +144,7 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
                    newProposalWeb.Properties.Update();
                    
                    //sets the default page.
-                   SPFile f = newProposalWeb.GetFile("Pages/Home.aspx");
+                   SPFile f = newProposalWeb.GetFile("Pages/BBHome.aspx");
 
                    newProposalWeb.Update();
                    PublishingWeb w = PublishingWeb.GetPublishingWeb(newProposalWeb);
@@ -290,10 +290,7 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
                                    updatingWeb.Title = afterValue;
                                    updatingWeb.Update();
 
-
-
                                }
-
 
                            });
 
@@ -304,7 +301,6 @@ namespace RecknerSharePointSolutions.Blueberry_Proposals_List_Event_Receiver
 
                }
            }
-
 
        }
 

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.VisualWebPart" DefaultFile="ParTimeAveragesUserControl.ascx" SupportedTrustLevels="FullTrust" SupportedDeploymentScopes="Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="ParTimeAverages\" Type="ElementManifest" />
+    <ProjectItemFile Source="ParTimeAverages.webpart" Target="ParTimeAverages\" Type="ElementFile" />
+    <ProjectItemFile Source="ParTimeAveragesUserControl.ascx" Target="CONTROLTEMPLATES\RecknerSharePointSolutions\ParTimeAverages\" Type="TemplateFile" />
+  </Files>
+  <SafeControls>
+    <SafeControl Name="SafeControlEntry1" Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="RecknerSharePointSolutions.ParTimeAverages" TypeName="*" IsSafe="true" IsSafeAgainstScript="false" />
+  </SafeControls>
+</ProjectItem>
