@@ -19,31 +19,28 @@ namespace RecknerSharePointSolutions.ParTimeAverages
         public ParTimeAverages ThisWebPart { get; set; }
 
         decimal cellValue = 0;
-
-        //Obama Care starts this date.
-        DateTime startDate = new DateTime(2012, 12, 1); 
-        
+                            
         protected void Page_Load(object sender, EventArgs e)
         {
             this.ThisWebPart = this.Parent as ParTimeAverages;
             
             if (!Page.IsPostBack) {
-
+ 
 
                 if (ThisWebPart.BackToMonths > 0) {
 
-                    startDate = DateTime.Now.AddMonths(ThisWebPart.BackToMonths * -1);
+                    ThisWebPart.StartDate = DateTime.Now.AddMonths(ThisWebPart.BackToMonths * -1);
                     
                 }
-                     
-                            
-                   var sourceTable = GetData("proback", startDate);
-                   var pivotTable = GeneratePivotTable(sourceTable, startDate);
+ 
+                var sourceTable = GetData("proback", ThisWebPart.StartDate);
+                var pivotTable = GeneratePivotTable(sourceTable, ThisWebPart.StartDate);
                    pivotTable.Sort = ThisWebPart.SortExpression;
                    pivotTable.RowFilter = ThisWebPart.FilterExpression;
                 
                    GridView1.DataSource = pivotTable;
                    GridView1.DataBind();
+                 
              }
         }
 
@@ -60,14 +57,14 @@ namespace RecknerSharePointSolutions.ParTimeAverages
         {
             pivotTable.Columns.Add("Location");
             pivotTable.Columns.Add("Employee");
+            pivotTable.Columns.Add("Averages");
 
-            foreach (var weekNumbers in  startDate.EnumarateWeekNumbers(DateTime.Now))
+            foreach (var weekNumbers in  startDate.EnumarateWeekNumbers(DateTime.Now.AddDays(-5)))
             {
                 pivotTable.Columns.Add(weekNumbers);
             }
-
-
-            pivotTable.Columns.Add("Averages");
+ 
+        
         }
 
         private static void GeneratePivotRows(DataTable sourceTable, DataTable pivotTable)
@@ -90,7 +87,7 @@ namespace RecknerSharePointSolutions.ParTimeAverages
                 pivotRow["Location"] = employee.Location;
                 pivotRow["Employee"] = employee.Name;
 
-                for (var i = 2; i < pivotTable.Columns.Count - 1; i++)
+                for (var i = 3; i < pivotTable.Columns.Count  ; i++)
                 {
                     columnName = pivotTable.Columns[i].ColumnName;
                      
@@ -98,8 +95,9 @@ namespace RecknerSharePointSolutions.ParTimeAverages
 
                 }
 
-
-                pivotRow.Compute("avg", "Averages", 2, pivotTable.Columns.Count - 1, 2);
+               
+               
+                pivotRow.Compute("avg", "Averages", 3, pivotTable.Columns.Count, 2);
 
                 pivotTable.Rows.Add(pivotRow);
 
@@ -131,8 +129,7 @@ namespace RecknerSharePointSolutions.ParTimeAverages
             return ds.Tables[0];
 
         }
-
-
+        
         private static double GetEmployeeHoursByWeek(DataTable sourceTable, string employeeName, string weekNum)
         {
             double employeeHour = 0;
@@ -151,22 +148,46 @@ namespace RecknerSharePointSolutions.ParTimeAverages
             return Math.Round(employeeHour, 2);
         }
 
+        int cellIndex = 0;
+
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             foreach (TableCell item in e.Row.Cells)
             {
+                cellIndex += 1;
+
+                if (cellIndex == 3)
+                {
+
+                    item.BackColor = System.Drawing.Color.SteelBlue;
+                    item.ForeColor = System.Drawing.Color.White;
+                    
+                }
+
+
                 Decimal.TryParse(item.Text, out cellValue);
                  
                 if (cellValue >= ThisWebPart.TotalHoursTreshold) {
 
                     item.BackColor = System.Drawing.Color.Red;
                     item.ForeColor = System.Drawing.Color.White;
-                
+                    item.Wrap = false;
+
+                    
+                                    
                 }
-                
+
+             
+                                
             }
+
+            cellIndex = 0;
+
         }
 
+   
+
+     
 
 
 

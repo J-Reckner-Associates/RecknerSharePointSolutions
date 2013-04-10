@@ -19,7 +19,8 @@ namespace RecknerSharePointSolutions.ParTimeAverages
         string _sortExpression = "Averages DESC";
         string _filterExpression = "";
         int _backToMonths = 0;
-
+        DateTime _startDate = new DateTime(2012,12,3);
+        
         [WebBrowsable(true)]
         [Personalizable(PersonalizationScope.Shared)]
         [Category("Settings")]
@@ -41,6 +42,12 @@ namespace RecknerSharePointSolutions.ParTimeAverages
         [Personalizable(PersonalizationScope.Shared)]
         [Category("Settings")]
         public int BackToMonths { get { return _backToMonths; } set { _backToMonths = value; } }
+
+        //Retroactive Obamacare start date
+        [WebBrowsable(true)]
+        [Personalizable(PersonalizationScope.Shared)]
+        [Category("Settings")]
+        public DateTime StartDate { get { return _startDate; } set { _startDate = value; } }
 
 
         protected override void CreateChildControls()
